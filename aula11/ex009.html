@@ -1,12 +1,41 @@
-<!-- pediu exercío, porém não tem correção -->
+<!-- pediu exercío, porém não tem correção
+fazer o ex009.js só que em formato de site usando html, css e js -->
+<!-- não soube fazer, usei IA, bem chato... -->
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sistema de Nacionalidade</title>
+    <style>
+        body{
+            background:navajowhite;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Sistema de Nacionalidade</h1>
+    País de origem<input type="text" name="txtpais" id="txtpais" >
+    <input type="button" value="Verificar Nacionalidade" onclick="calcular()">
+    <div id="res">
+
+    </div>
+    <script>
+
+        function calcular() {
+            var txtp = document.querySelector('input#txtpais')
+            var res = document.querySelector('div#res')
+            var pais = txtp.value
+            res.innerHTML = `<p>Vivendo em <strong>${pais}</strong></p>`
+            if (pais != 'Brasil') {
+                res.innerHTML += '<p>Você é <strong>Estrangeiro</strong>!</p>'
+            } else {
+                res.innerHTML += '<p>Você é <strong>Brasileiro</strong>!</p>'
+            }
+        }
+    </script>
 </body>
+
 </html>
