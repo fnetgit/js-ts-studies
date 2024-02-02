@@ -24,6 +24,7 @@ console.log('Tudo bem?')
 */
 
 
+
 //estrutura de repetição com teste lógico no início
 while (condição) {
 
