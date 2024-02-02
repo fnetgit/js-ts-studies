@@ -14,7 +14,7 @@ sab = 6
  */
 
 //console.log(diaSem)   tirando o número.../
-
+//switch são condições múltiplas
 switch (diaSem) {
     case 0:
         console.log('Domingo')
