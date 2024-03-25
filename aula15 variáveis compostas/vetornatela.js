@@ -30,6 +30,6 @@ for(let pos=0; pos < valores.length; pos++) {
 
 //agora uma versão mais simplificada do código anterior
 
-for(let pos in valores)/* lê-se para cada posição dentro de num; em num */ {
+for (let pos in valores)/* lê-se para cada posição dentro de num; em num */ {
     console.log(`A posição ${pos} tem o valor ${valores[pos]}`)
 }
