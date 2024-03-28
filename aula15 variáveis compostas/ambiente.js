@@ -8,14 +8,13 @@ console.log(`O primeiro valor do vetor é ${num[0]}`) //escreve-se 0 pois começ
 
 //Cuidado! Dependendo da ordem, pode alterar as coisas, se eu colocasse esse push depois do sort, ele primeiro iria colocar em ordem e depois ia adicionar o 1, ficando [2, 3, 4, 5 , 8 , 9, 1]
 
+
+/*A propriedade length é usada para obter o tamanho de uma string ou de um array.
+•Quando aplicada a uma string, ela retorna o número de caracteres na string.
+•Quando aplicada a um array, ela retorna o número de elementos no array.*/
+
+
 //execute com o node para entender melhor(f8)
-
-
-
-
-
-
-
 
 
 
