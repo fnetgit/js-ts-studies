@@ -1,1 +1,1 @@
-Estudos do curso de JavaScript do Curso em Vídeo
+# Estudos de Node, JavaScript, Typescript e outros relacionados
