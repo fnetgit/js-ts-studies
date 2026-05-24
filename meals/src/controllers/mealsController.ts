@@ -14,6 +14,15 @@ export const listMeals = (req: Request, res: Response) => {
   return res.status(200).json(meals)
 }
 
+export const getMealById = (req: Request, res: Response) => {
+  const id = Number(req.params.id)
+  const meal = meals.find((m) => m.id == id)
+  if (!meal) {
+    return res.status(404).json({ error: 'Refeição não encontrada' })
+  }
+  return res.status(200).json(meal)
+}
+
 export const createMeal = (req: Request, res: Response) => {
   const { name, calories, mealType } = req.body
   if (!name || !calories || !mealType) {
