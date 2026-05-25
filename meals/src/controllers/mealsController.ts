@@ -71,3 +71,13 @@ export const patchMeal = (req: Request, res: Response) => {
 
   return res.status(200).json(meals[mealIndex])
 }
+
+export const removeMeal = (req: Request, res: Response) => {
+  const id = Number(req.params.id)
+  const mealIndex = meals.findIndex((m) => m.id === id)
+  if (mealIndex === -1) {
+    return res.status(404).json({ error: 'Refeição não encontrada' })
+  }
+  meals.splice(mealIndex, 1)
+  res.status(204).send()
+}
