@@ -55,3 +55,19 @@ export const updateMeal = (req: Request, res: Response) => {
   meals[mealIndex] = { id, name, calories, mealType }
   return res.status(200).json(meals[mealIndex])
 }
+
+export const patchMeal = (req: Request, res: Response) => {
+  const id = Number(req.params.id)
+  const mealIndex = meals.findIndex((m) => m.id === id)
+  if (mealIndex === -1) {
+    return res.status(404).json({ error: 'Refeição não encontrada' })
+  }
+
+  meals[mealIndex] = {
+    ...meals[mealIndex],
+    ...req.body,
+    id,
+  }
+
+  return res.status(200).json(meals[mealIndex])
+}
