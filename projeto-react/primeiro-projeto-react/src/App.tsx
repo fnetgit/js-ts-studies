@@ -1,12 +1,12 @@
+import { Display } from "./components/Display";
+
 function App() {
   return (
     <div>
-
-        <h1>Olá, mundo!</h1>
-        <p>Este é o meu primeiro projeto React.</p>
-
+      <h1>Contador de curtidas</h1>
+      <Display />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
