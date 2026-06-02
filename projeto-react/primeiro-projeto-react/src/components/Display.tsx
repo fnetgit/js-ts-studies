@@ -1,7 +1,11 @@
-export function Display() {
-    return (
-        <div>
-            <p>Total: 0</p>
-        </div>
-    )
+interface DisplayProps {
+  count: number;
+}
+
+export function Display({ count }: DisplayProps) {
+  return (
+    <div>
+      <p>Total: {count}</p>
+    </div>
+  );
 }

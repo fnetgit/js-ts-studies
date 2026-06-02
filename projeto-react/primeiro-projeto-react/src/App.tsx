@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <h1>Contador de curtidas</h1>
-      <Display />
+      <Display count={50} />
     </div>
   );
 }
