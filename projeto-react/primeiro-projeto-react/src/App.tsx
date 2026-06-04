@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Display } from "./components/Display";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Curtidas: ${count}`;
+  }, [count]);
 
   return (
     <div>
