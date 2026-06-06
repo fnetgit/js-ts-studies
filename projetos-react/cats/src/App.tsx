@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [catUrl, setCatUrl] = useState<string | null>(null);
@@ -12,11 +12,19 @@ function App() {
     try {
       setLoading(true);
       setError(null);
-
       const response = await fetch(
         "https://api.thecatapi.com/v1/images/search",
       );
+
+      if (!response.ok) {
+        throw new Error("Erro na resposta da API");
+      }
+
       const data = await response.json();
+
+      if (!data || data.length === 0) {
+        throw new Error("Resposta da API vazia ou inválida");
+      }
 
       setCatUrl(data[0].url);
       setCatId(data[0].id);
@@ -38,14 +46,18 @@ function App() {
   }
 
   useEffect(() => {
-    fetchCat();
+    async function fetchFirstCat() {
+      await fetchCat();
+    }
+
+    fetchFirstCat();
   }, []);
 
   return (
     <div>
-      <h1>Gerador de gatinhos</h1>
-
       <div>
+        <h1>Gerador de gatinhos</h1>
+
         {loading ? (
           <p>Carregando...</p>
         ) : catUrl ? (
