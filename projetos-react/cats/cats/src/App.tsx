@@ -48,7 +48,7 @@ function App() {
       </div>
 
       <div>
-        <button>Gerar novo gatinho</button>
+        <button onClick={fetchCat}>Gerar novo gatinho</button>
       </div>
     </div>
   );
