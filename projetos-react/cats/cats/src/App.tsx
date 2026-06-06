@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [catUrl, setCatUrl] = useState<string | null>(null);
+  const [catId, setCatId] = useState<string | null>(null);
+  const [votes, setVotes] = useState<number>(0);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,11 +19,22 @@ function App() {
       const data = await response.json();
 
       setCatUrl(data[0].url);
+      setCatId(data[0].id);
+      setVotes(0);
     } catch {
       setError("Erro ao buscar o gatinho");
     } finally {
       setLoading(false);
     }
+  }
+
+  function catVote(value: number) {
+    if (!catId) {
+      setError("Nenhuma imagem para votar");
+      return;
+    }
+
+    setVotes((prev) => prev + (value === 1 ? 1 : -1));
   }
 
   useEffect(() => {
@@ -43,8 +57,9 @@ function App() {
       </div>
 
       <div>
-        <button>Like</button>
-        <button>Deslike</button>
+        <p>Votos: {votes}</p>
+        <button onClick={() => catVote(1)}>Like</button>
+        <button onClick={() => catVote(0)}>Deslike</button>
       </div>
 
       <div>
