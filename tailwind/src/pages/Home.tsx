@@ -3,6 +3,8 @@ import Button from "../components/Button";
 import SearchBar from "../components/SearchBar";
 import TripCard from "../components/TripCard";
 import saopaulo from "../assets/saopaulo.jpg";
+import fortaleza from "../assets/fortaleza.jpg";
+import recife from "../assets/recife.jpg";
 
 export default function Home() {
   return (
@@ -22,16 +24,16 @@ export default function Home() {
           price="500"
         />
         <TripCard
-          image={saopaulo}
+          image={fortaleza}
           origin="Teresina"
-          destination="São Paulo"
-          price="500"
+          destination="Fortaleza"
+          price="1000"
         />
         <TripCard
-          image={saopaulo}
+          image={recife}
           origin="Teresina"
-          destination="São Paulo"
-          price="500"
+          destination="Recife"
+          price="900"
         />
       </div>
     </div>
