@@ -6,7 +6,9 @@ export default function Banner() {
       <h1 className="text-3xl font-bold max-w-sm mb-4">
         Seu próximo destino está aqui
       </h1>
-      <Button text="Comprar com 40% off" />
+      <div className="max-w-50">
+        <Button text="Comprar com 40% off" />
+      </div>
     </div>
   );
 }
