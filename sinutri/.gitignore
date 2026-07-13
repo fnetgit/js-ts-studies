@@ -1,0 +1,40 @@
+# Dependencies
+node_modules
+
+# Build outputs
+build
+dist
+coverage
+
+# TypeScript / tooling caches
+.cache
+.tmp
+.eslintcache
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+logs
+tmp
+results
+pids
+*.log
+*.out
+*.pid
+*.seed
+*.csv
+*.dat
+*.gz
+*.swp
+
+# Editors / IDEs
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
