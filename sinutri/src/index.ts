@@ -1,5 +1,6 @@
-import {app} from './app.js';
+import { app } from "./app.js";
+import { env } from "./config/env.js";
 
-app.listen(3000, () => {
-  console.log('Signature back está rodando em localhost:3333');
+app.listen(env.port, () => {
+  console.log(`Signature back está rodando em localhost:${env.port}`);
 });
