@@ -40,3 +40,7 @@ pids
 Thumbs.db
 
 /src/generated/prisma
+
+# Database files
+prisma/*.db
+prisma/*.db-journal
