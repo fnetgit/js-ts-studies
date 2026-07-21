@@ -9,6 +9,8 @@ import { LoginPage } from '@/pages/LoginPage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { ProtectedRoute } from './ProtectRoute';
 import { DietFoodPage } from '@/pages/DietFood';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { MetricsPage } from '@/pages/MetricsPage';
 
 export function Router() {
   return (
@@ -28,29 +30,21 @@ export function Router() {
           }
         >
           <Route
+            path="/"
+            element={<DashboardPage drawerId="main-drawer" />}
+          />
+          <Route
             path="/foods"
             element={<DietFoodPage />}
-        
           />
-
-        </Route>
-
-       
-
-        <Route
-          element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }
-        >
           <Route
-            path="/"
-            element={
-              <DashboardPage drawerId="main-drawer" />
-            }
+            path="/profile"
+            element={<ProfilePage />}
           />
-
+          <Route
+            path="/stats"
+            element={<MetricsPage />}
+          />
         </Route>
 
       </Routes>
