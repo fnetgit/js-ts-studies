@@ -13,7 +13,7 @@ export function MealListItem({ meal, onActionClick }: MealListItemProps) {
   const Icon = category.Icon;
 
   return (
-    <article className="card card-side bg-base-100 shadow-sm border border-base-200">
+    <article className="card card-side bg-base-100 shadow-sm border border-base-200 overflow-visible">
       <div className="card-body p-4 flex-row items-center gap-4 relative overflow-visible">
         <div className="bg-primary/10 text-primary rounded-full p-2">
           <Icon size={20} />
