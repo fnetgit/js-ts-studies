@@ -108,10 +108,10 @@ export function DashboardPage({ drawerId }: DashboardPageProps) {
         fats: 0,
         calories: 0,
 
-        caloriesGoal: 1000, //ainda não veio do banco de dados
+        caloriesGoal: user.targetDietDaily || 2000,
       },
     );
-  }, [meals]);
+  }, [meals, user.targetDietDaily]);
 
 
   if (loading) {
