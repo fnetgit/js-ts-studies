@@ -3,7 +3,7 @@ import { MealsTableRow } from './MealsTableRow';
 
 interface MealsTableProps {
   meals: Meal[];
-  onActionClick?: (meal: Meal) => void;
+  onActionClick?: (meal: Meal, action: 'edit' | 'delete') => void;
 }
 
 export function MealsTable({ meals, onActionClick }: MealsTableProps) {

@@ -122,6 +122,22 @@ export function DashboardPage({ drawerId }: DashboardPageProps) {
     );
   }
 
+  async function handleActionClick(meal: Meal, action: 'edit' | 'delete') {
+    if (action === 'edit') {
+      modal.openEdit(meal);
+    } else if (action === 'delete') {
+      if (confirm('Tem certeza que deseja excluir esta refeição?')) {
+        try {
+          await api.delete(`/meals/${meal.id}`);
+          await loadMeals();
+        } catch (error) {
+          console.error(error);
+          alert('Erro ao excluir refeição');
+        }
+      }
+    }
+  }
+
   return (
     <>
       <div className="flex flex-col gap-6 w-full max-w-[1200px] mx-auto mb-8">
@@ -138,8 +154,8 @@ export function DashboardPage({ drawerId }: DashboardPageProps) {
           <AddMealCard onSelectCategory={modal.openWith} />
         </div>
 
-        <MealsTable meals={meals} />
-        <MealsList meals={meals} />
+        <MealsTable meals={meals} onActionClick={handleActionClick} />
+        <MealsList meals={meals} onActionClick={handleActionClick} />
       </div>
 
       <MealFab onSelectCategory={modal.openWith} />
@@ -147,6 +163,7 @@ export function DashboardPage({ drawerId }: DashboardPageProps) {
       <AddMealModal
         open={modal.open}
         typeMeal={modal.selectedCategory}
+        mealToEdit={modal.selectedMeal}
         onClose={modal.close}
         onSave={modal.close}
         onMealCreated={loadMeals}

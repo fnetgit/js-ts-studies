@@ -5,7 +5,7 @@ import { formatDate } from '@/utils/date';
 
 interface MealsTableRowProps {
   meal: Meal;
-  onActionClick?: (meal: Meal) => void;
+  onActionClick?: (meal: Meal, action: 'edit' | 'delete') => void;
 }
 
 export function MealsTableRow({ meal, onActionClick }: MealsTableRowProps) {
@@ -23,14 +23,15 @@ export function MealsTableRow({ meal, onActionClick }: MealsTableRowProps) {
         </span>
       </td>
       <td className="text-center">
-        <button
-          type="button"
-          onClick={() => onActionClick?.(meal)}
-          className="btn btn-sm btn-ghost btn-square"
-          aria-label="Mais ações"
-        >
-          <DotsThree size={20} />
-        </button>
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-sm btn-ghost btn-square m-1">
+            <DotsThree size={20} />
+          </label>
+          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-sm bg-base-100 rounded-box w-32 border border-base-200">
+            <li><a onClick={() => onActionClick?.(meal, 'edit')}>Editar</a></li>
+            <li><a className="text-error" onClick={() => onActionClick?.(meal, 'delete')}>Excluir</a></li>
+          </ul>
+        </div>
       </td>
     </tr>
   );

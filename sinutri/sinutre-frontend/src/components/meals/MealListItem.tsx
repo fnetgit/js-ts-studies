@@ -5,7 +5,7 @@ import { formatDate } from '@/utils/date';
 
 interface MealListItemProps {
   meal: Meal;
-  onActionClick?: (meal: Meal) => void;
+  onActionClick?: (meal: Meal, action: 'edit' | 'delete') => void;
 }
 
 export function MealListItem({ meal, onActionClick }: MealListItemProps) {
@@ -13,8 +13,8 @@ export function MealListItem({ meal, onActionClick }: MealListItemProps) {
   const Icon = category.Icon;
 
   return (
-    <article className="card card-side bg-base-100 shadow-sm">
-      <div className="card-body p-4 flex-row items-center gap-4">
+    <article className="card card-side bg-base-100 shadow-sm border border-base-200">
+      <div className="card-body p-4 flex-row items-center gap-4 relative overflow-visible">
         <div className="bg-primary/10 text-primary rounded-full p-2">
           <Icon size={20} />
         </div>
@@ -26,14 +26,15 @@ export function MealListItem({ meal, onActionClick }: MealListItemProps) {
         <span className="badge badge-primary badge-outline badge-sm">
           {meal.totals.calories} kcal
         </span>
-        <button
-          type="button"
-          onClick={() => onActionClick?.(meal)}
-          className="btn btn-ghost btn-sm btn-square"
-          aria-label="Mais ações"
-        >
-          <DotsThreeVertical size={18} />
-        </button>
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-sm btn-square m-1">
+            <DotsThreeVertical size={18} />
+          </label>
+          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-sm bg-base-100 rounded-box w-32 border border-base-200">
+            <li><a onClick={() => onActionClick?.(meal, 'edit')}>Editar</a></li>
+            <li><a className="text-error" onClick={() => onActionClick?.(meal, 'delete')}>Excluir</a></li>
+          </ul>
+        </div>
       </div>
     </article>
   );
