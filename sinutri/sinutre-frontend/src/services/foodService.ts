@@ -41,3 +41,7 @@ export async function updateFood(
 
   return response.data;
 }
+
+export async function deleteFood(id: number) {
+  await api.delete(`/foods/${id}`);
+}

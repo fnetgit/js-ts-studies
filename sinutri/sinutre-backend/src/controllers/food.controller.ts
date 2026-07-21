@@ -79,3 +79,29 @@ export async function updateFood(req: Request, res: Response) {
 
   return res.status(200).json(updatedFood);
 }
+
+export async function deleteFood(req: Request, res: Response) {
+  const { id } = req.params;
+
+  const existingFood = await prisma.food.findFirst({
+    where: {
+      id: Number(id),
+    }
+  });
+
+  if (!existingFood) {
+    return res.status(404).json({ error: 'Food not found.' });
+  }
+
+  if (existingFood.userId !== req.userId) {
+    return res.status(403).json({ error: 'Forbidden: You do not own this food item.' });
+  }
+
+  await prisma.food.delete({
+    where: {
+      id: Number(id),
+    }
+  });
+
+  return res.status(204).send();
+}

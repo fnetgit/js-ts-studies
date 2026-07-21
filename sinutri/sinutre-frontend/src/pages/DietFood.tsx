@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Plus, PencilSimple } from '@phosphor-icons/react';
+import { Plus, PencilSimple, Trash } from '@phosphor-icons/react';
 
 import { SimpleHeader } from '@/components/layout/SimpleHeader';
 import { AddFoodModal } from '@/components/modal/AddFoodModal';
 import { EditFoodModal } from '@/components/modal/EditFoodModal';
 
-import { getFoods } from '@/services/foodService';
+import { getFoods, deleteFood } from '@/services/foodService';
 import type { Food } from '@/types/food';
 
 const MODAL_ID = 'create-food-modal';
@@ -22,6 +22,18 @@ export function DietFoodPage() {
       setFoods(data);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleDelete(id: number) {
+    if (window.confirm('Tem certeza que deseja excluir este alimento?')) {
+      try {
+        await deleteFood(id);
+        setFoods((prev) => prev.filter((food) => food.id !== id));
+      } catch (error) {
+        console.error('Failed to delete food:', error);
+        alert('Erro ao excluir o alimento.');
+      }
     }
   }
 
@@ -50,15 +62,23 @@ export function DietFoodPage() {
                   <h2 className="card-title">
                     {food.name}
                   </h2>
-                  <button 
-                    className="btn btn-ghost btn-sm btn-circle"
-                    onClick={() => {
-                      setFoodToEdit(food);
-                      (document.getElementById(EDIT_MODAL_ID) as HTMLDialogElement)?.showModal();
-                    }}
-                  >
-                    <PencilSimple size={20} />
-                  </button>
+                  <div className="flex gap-2">
+                    <button 
+                      className="btn btn-ghost btn-sm btn-circle"
+                      onClick={() => {
+                        setFoodToEdit(food);
+                        (document.getElementById(EDIT_MODAL_ID) as HTMLDialogElement)?.showModal();
+                      }}
+                    >
+                      <PencilSimple size={20} />
+                    </button>
+                    <button
+                      className="btn btn-ghost btn-sm btn-circle text-error"
+                      onClick={() => handleDelete(food.id)}
+                    >
+                      <Trash size={20} />
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
