@@ -12,6 +12,7 @@ interface AuthContextData {
   user: User | null;
   loading: boolean;
   refreshUser: () => Promise<void>;
+  signOut: () => void;
 }
 
 const AuthContext =
@@ -48,12 +49,21 @@ export function AuthProvider({
     );
   }, []);
 
+  async function signOut() {
+    import('@/lib/api').then(({ clearToken }) => {
+      clearToken();
+      setUser(null);
+      window.location.href = '/login';
+    });
+  }
+
   return (
     <AuthContext.Provider
       value={{
         user,
         loading,
         refreshUser,
+        signOut,
       }}
     >
       {children}

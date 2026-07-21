@@ -2,6 +2,8 @@
 import { NAV_ITEMS } from '@/constants/navigation';
 import { SidebarBrand } from './SidebarBrand';
 import { SidebarItem } from './SidebarItem';
+import { SignOut } from '@phosphor-icons/react';
+import { useAuth } from '@/context/AuthContext';
 
 interface SidebarProps {
   drawerId: string;
@@ -10,6 +12,7 @@ interface SidebarProps {
 export function Sidebar({ drawerId }: SidebarProps) {
  // const [activeId, setActiveId] = useState<string>('home');
   const expanded = true;
+  const { signOut } = useAuth();
 
   return (
     <aside className="drawer-side z-50">
@@ -34,6 +37,15 @@ export function Sidebar({ drawerId }: SidebarProps) {
               expanded={expanded}
             />
           ))}
+          <li className="mt-auto mb-4">
+            <button 
+              onClick={signOut}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 hover:bg-error/10 hover:text-error transition-colors`}
+            >
+              <SignOut size={24} />
+              {expanded && <span>Sair</span>}
+            </button>
+          </li>
         </ul>
       </div>
     </aside>
