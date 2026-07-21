@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Plus } from '@phosphor-icons/react';
+import { Plus, PencilSimple } from '@phosphor-icons/react';
 
 import { SimpleHeader } from '@/components/layout/SimpleHeader';
 import { AddFoodModal } from '@/components/modal/AddFoodModal';
+import { EditFoodModal } from '@/components/modal/EditFoodModal';
 
 import { getFoods } from '@/services/foodService';
 import type { Food } from '@/types/food';
 
 const MODAL_ID = 'create-food-modal';
+const EDIT_MODAL_ID = 'edit-food-modal';
 
 export function DietFoodPage() {
   const [foods, setFoods] = useState<Food[]>([]);
   const [loading, setLoading] = useState(true);
+  const [foodToEdit, setFoodToEdit] = useState<Food | null>(null);
 
   async function loadFoods() {
     try {
@@ -43,9 +46,20 @@ export function DietFoodPage() {
               className="card bg-base-100 shadow-sm"
             >
               <div className="card-body">
-                <h2 className="card-title">
-                  {food.name}
-                </h2>
+                <div className="flex justify-between items-start">
+                  <h2 className="card-title">
+                    {food.name}
+                  </h2>
+                  <button 
+                    className="btn btn-ghost btn-sm btn-circle"
+                    onClick={() => {
+                      setFoodToEdit(food);
+                      (document.getElementById(EDIT_MODAL_ID) as HTMLDialogElement)?.showModal();
+                    }}
+                  >
+                    <PencilSimple size={20} />
+                  </button>
+                </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                   <span>
@@ -86,6 +100,12 @@ export function DietFoodPage() {
       <AddFoodModal
         modalId={MODAL_ID}
         onCreated={loadFoods}
+      />
+
+      <EditFoodModal
+        modalId={EDIT_MODAL_ID}
+        food={foodToEdit}
+        onUpdated={loadFoods}
       />
     </div>
   );
