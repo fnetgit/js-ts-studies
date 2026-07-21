@@ -169,3 +169,89 @@ export async function createMeal(
   return res.status(201).json(meal);
 }
 
+export async function deleteMeal(req: Request, res: Response) {
+  const userId = req.userId!;
+  const mealId = parseInt(req.params.id);
+
+  const meal = await prisma.meal.findUnique({
+    where: { id: mealId },
+  });
+
+  if (!meal || meal.userId !== userId) {
+    return res.status(404).json({ error: 'Refeição não encontrada' });
+  }
+
+  await prisma.mealFood.deleteMany({
+    where: { mealId },
+  });
+
+  await prisma.meal.delete({
+    where: { id: mealId },
+  });
+
+  return res.status(204).send();
+}
+
+export async function updateMeal(req: Request, res: Response) {
+  const userId = req.userId!;
+  const mealId = parseInt(req.params.id);
+
+  const { type, eatTime, description, items } = req.body;
+
+  const existingMeal = await prisma.meal.findUnique({
+    where: { id: mealId },
+  });
+
+  if (!existingMeal || existingMeal.userId !== userId) {
+    return res.status(404).json({ error: 'Refeição não encontrada' });
+  }
+
+  const meal = await prisma.$transaction(async (tx) => {
+    const foods = await tx.food.findMany({
+      where: {
+        id: { in: items.map((i: { foodId: number }) => i.foodId) },
+        userId,
+      },
+    });
+
+    if (foods.length !== items.length) {
+      throw new Error('Alimento não encontrado');
+    }
+
+    // Update meal
+    const updatedMeal = await tx.meal.update({
+      where: { id: mealId },
+      data: {
+        type,
+        eatTime: new Date(eatTime),
+        description,
+      },
+    });
+
+    // Delete old items
+    await tx.mealFood.deleteMany({
+      where: { mealId },
+    });
+
+    // Insert new items
+    await tx.mealFood.createMany({
+      data: items.map((item: { foodId: number; grams: number }) => {
+        const food = foods.find((f) => f.id === item.foodId)!;
+        return {
+          mealId: mealId,
+          foodId: food.id,
+          foodG: item.grams,
+          calories: (food.caloriesPer100g * item.grams) / 100,
+          carbs: (food.carbsPer100g * item.grams) / 100,
+          protein: (food.proteinPer100g * item.grams) / 100,
+          fat: (food.fatPer100g * item.grams) / 100,
+        };
+      }),
+    });
+
+    return updatedMeal;
+  });
+
+  return res.json(meal);
+}
+
