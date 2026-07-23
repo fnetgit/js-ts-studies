@@ -48,17 +48,27 @@ npm run preview # preview do build
 O tema customizado `sinutre` (paleta verde/laranja) está definido em
 `src/styles/theme.css` usando a sintaxe `@plugin 'daisyui/theme'` do daisyUI v5.
 
-## Funcionalidades Desenvolvidas (Requisitos Complementares)
+## Requisitos Obrigatórios e Links Úteis
 
-Este projeto implementou as seguintes funcionalidades como parte do Projeto Final:
+Para atender aos requisitos do projeto final, seguem os links do projeto em produção e repositórios:
 
-- **Ref 01 / Ref 02:** Na página de alimentos, é possível alterar e excluir os alimentos cadastrados através dos ícones de ação. As mudanças são refletidas de imediato na listagem.
-- **Ref 03:** Inclusão de validação visual no front-end para evitar dados incompletos ou em branco no formulário de alimentos, além do backend usando `Zod` para blindar a API.
-- **Ref 04 / Ref 05:** Criação da página de **Perfil** para capturar e atualizar dados complementares do usuário (Altura, Peso, Gênero, Objetivo, Nível de Atividade Física e Meta Calórica). O formulário preenche os dados previamente salvos.
-- **Ref 06:** A meta calórica cadastrada no Perfil reflete dinamicamente na página inicial (Dashboard).
-- **Ref 07 / Ref 19:** Sinalização clara com alerta verde ou vermelho se a meta calórica do dia foi atingida ou ultrapassada, validada via cálculo integrado entre API e o App.
-- **Ref 08 / Ref 20:** Criação de uma robusta **Página de Métricas** (acessada pelo menu Progresso), que consome do backend a consolidação dos dados agregados numa rota limpa (`/metrics/summary`).
-- **Ref 09 / Ref 21:** A API calcula o Índice de Massa Corporal (IMC) usando altura e peso, classificando a faixa de risco, e o frontend exibe o dado em um card customizado na página de Métricas.
-- **Ref 10 / Ref 22:** Visualização da **Média Calórica dos Últimos 7 Dias** contrapondo com a meta diária (cálculo real efetuado pelo Backend).
-- **Ref 11 / Ref 23:** Adicionado um botão para deslogar do sistema (Logout), que apaga o JWT armazenado e devolve o usuário para a rota `/login`.
-- **Ref 12 / Ref 24:** Alteração da identidade visual do sistema utilizando o `theme.css` do Tailwind DaisyUI.
+- **Frontend (Vercel):** [https://js-ts-studies.vercel.app](https://js-ts-studies.vercel.app)
+- **Backend (Railway):** [https://js-ts-studies-production.up.railway.app](https://js-ts-studies-production.up.railway.app)
+- **Repositório GitHub (Frontend & Backend):** [https://github.com/fnetgit/js-ts-studies](https://github.com/fnetgit/js-ts-studies)
+
+## Requisitos Complementares Desenvolvidos
+
+Este projeto implementou as seguintes funcionalidades da tabela do Projeto Final:
+
+- **Ref 01:** Na página de alimentos, alterar um alimento cadastrado. (As mudanças são refletidas de imediato na listagem e no backend).
+- **Ref 02:** Na página de alimentos, excluir um alimento cadastrado.
+- **Ref 03:** Incluir no cadastro e/ou alteração do alimento validação de dados. (Uso do Zod no backend e validação no frontend).
+- **Ref 04:** Cadastrar dados complementares do usuário logado, como meta calórica, altura e peso com validação de dados. (Criada a página Meu Perfil).
+- **Ref 05:** Alterar dados complementares do usuário logado.
+- **Ref 06:** Visualizar meta calórica no dashboard, uma vez cadastrado pelo usuário essa informação e armazenada no banco de dados.
+- **Ref 07:** Sinalizar se a quantidade da meta calórica diária foi ultrapassada. (Alerta visual na progress bar do Dashboard).
+- **Ref 08:** Criar uma nova página de métricas acessada pelo menu, e colocar duas componentes que trarão dados de IMC e Média Calorica.
+- **Ref 09:** Adicionar na página de métricas o IMC do usuário e sinalizar em que faixa ele se encontra. (O backend calcula a classificação de risco).
+- **Ref 10:** Adicionar na página de métricas a Média calórica e sua relação com a meta estabelecida nos últimos sete dias.
+- **Ref 11:** Fazer uma forma do usuário fazer logout. (Apaga o token e retorna ao login).
+- **Ref 12:** Mudar cores da interface. (Adicionado o tom Laranja/Vermelho para combinar com um app de nutrição).
