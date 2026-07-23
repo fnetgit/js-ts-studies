@@ -54,7 +54,7 @@ Para atender aos requisitos do projeto final, seguem os links do projeto em prod
 
 - **Frontend (Vercel):** [https://js-ts-studies.vercel.app](https://js-ts-studies.vercel.app)
 - **Backend (Railway):** [https://js-ts-studies-production.up.railway.app](https://js-ts-studies-production.up.railway.app)
-- **Repositório GitHub (Frontend & Backend):** [https://github.com/fnetgit/js-ts-studies](https://github.com/fnetgit/js-ts-studies)
+- **Repositório GitHub (Frontend & Backend):** [https://github.com/fnetgit/js-ts-studies/tree/main/sinutri](https://github.com/fnetgit/js-ts-studies/tree/main/sinutri)
 
 ## Requisitos Complementares Desenvolvidos
 
