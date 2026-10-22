@@ -36,11 +36,11 @@ src/
 ## Scripts
 
 ```bash
-npm install     # instala dependências
-npm run dev     # servidor de desenvolvimento (vite)
-npm run build   # build de produção (tsc -b + vite build)
-npm run lint    # ESLint em todo o projeto
-npm run preview # preview do build
+pnpm install    # instala dependências
+pnpm run dev    # servidor de desenvolvimento (vite)
+pnpm run build  # build de produção (tsc -b + vite build)
+pnpm run lint   # ESLint em todo o projeto
+pnpm run preview # preview do build
 ```
 
 ## Tema
