@@ -24,11 +24,11 @@ Estrutura mínima: focada em **rotas** e **controllers** de forma desacoplada e 
 ## Setup
 
 ```bash
-npm install
+pnpm install
 cp .env.example .env          # preencha GITHUB_CLIENT_ID/SECRET e JWT_SECRET
-npx prisma migrate dev        # cria prisma/dev.db e aplica as tabelas
-npm run dev
+pnpm prisma migrate dev       # cria prisma/dev.db e aplica as tabelas
+pnpm dev
 ```
 
 O banco é um único arquivo em `prisma/dev.db` (ignorado pelo git). Para zerar,
-basta apagar o arquivo e rodar `npx prisma migrate dev` de novo.
+basta apagar o arquivo e rodar `pnpm prisma migrate dev` de novo.
